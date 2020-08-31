@@ -54,89 +54,143 @@
 </head>
 
 <body style="background:#f0f9fd;">
-<div class="lefttop"><span></span>通讯录</div>
+<div class="lefttop"><span></span>菜单列表</div>
 
 <dl class="leftmenu">
 
     <dd>
         <div class="title">
-            <span><img src="images/leftico01.png" /></span>管理信息
+            <span><img src="images/leftico01.png" /></span>体检工作站
         </div>
         <ul class="menuson">
 
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">首页模版</a>
+                    <a href="index.html" target="rightFrame">体检工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="javascript:;">文件管理</a></li>
-                    <li><a href="javascript:;">模型信息配置</a></li>
-                    <li><a href="javascript:;">基本内容</a></li>
-                    <li><a href="javascript:;">自定义</a></li>
+                    <li><a href="javascript:;">开单</a></li>
+                    <li><a href="javascript:;">打印导捡单和条码</a></li>
+                    <li><a href="javascript:;">体验报告打印</a></li>
                 </ul>
+
             </li>
 
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="right.html" target="rightFrame">数据列表</a>
+                    <a href="right.html" target="rightFrame">统计查询</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="javascript:;">文件数据</a></li>
-                    <li><a href="javascript:;">学生数据列表</a></li>
-                    <li><a href="javascript:;">我的数据列表</a></li>
-                    <li><a href="javascript:;">自定义</a></li>
+                    <li><a href="javascript:;">体验综合查询</a></li>
+                    <li><a href="javascript:;">体验人员查询</a></li>
                 </ul>
             </li>
 
-            <li class="active"><cite></cite><a href="right.html" target="rightFrame">数据列表</a><i></i></li>
-            <li><cite></cite><a href="imgtable.html" target="rightFrame">图片数据表</a><i></i></li>
-            <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i></i></li>
-            <li><cite></cite><a href="imglist.html" target="rightFrame">图片列表</a><i></i></li>
-            <li><cite></cite><a href="imglist1.html" target="rightFrame">自定义</a><i></i></li>
-            <li><cite></cite><a href="tools.html" target="rightFrame">常用工具</a><i></i></li>
-            <li><cite></cite><a href="filelist.html" target="rightFrame">信息管理</a><i></i></li>
-            <li><cite></cite><a href="tab.html" target="rightFrame">Tab页</a><i></i></li>
-            <li><cite></cite><a href="error.html" target="rightFrame">404页面</a><i></i></li>
         </ul>
     </dd>
-
-
     <dd>
         <div class="title">
-            <span><img src="images/leftico02.png" /></span>其他设置
+            <span><img src="images/leftico01.png" /></span>收费工作站
         </div>
         <ul class="menuson">
-            <li><cite></cite><a href="flow.html" target="rightFrame">流程图</a><i></i></li>
-            <li><cite></cite><a href="project.html" target="rightFrame">项目申报</a><i></i></li>
-            <li><cite></cite><a href="search.html" target="rightFrame">档案列表显示</a><i></i></li>
-            <li><cite></cite><a href="tech.html" target="rightFrame">技术支持</a><i></i></li>
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">收费工作</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">建卡</a></li>
+                    <li><a href="javascript:;">结算</a></li>
+                </ul>
+            </li>
         </ul>
     </dd>
-
-
-    <dd><div class="title"><span><img src="images/leftico03.png" /></span>编辑器</div>
+    <dd>
+        <div class="title">
+            <span><img src="images/leftico01.png" /></span>医生工作站
+        </div>
         <ul class="menuson">
-            <li><cite></cite><a href="#">自定义</a><i></i></li>
-            <li><cite></cite><a href="#">常用资料</a><i></i></li>
-            <li><cite></cite><a href="#">信息列表</a><i></i></li>
-            <li><cite></cite><a href="#">其他</a><i></i></li>
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">医生工作</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">项目接收</a></li>
+                    <li><a href="javascript:;">体检小结</a></li>
+                    <li><a href="javascript:;">体检总结</a></li>
+                </ul>
+            </li>
         </ul>
     </dd>
-
-
-    <dd><div class="title"><span><img src="images/leftico04.png" /></span>日期管理</div>
+    <dd>
+        <div class="title">
+            <span><img src="images/leftico01.png" /></span>管理工作站
+        </div>
         <ul class="menuson">
-            <li><cite></cite><a href="#">自定义</a><i></i></li>
-            <li><cite></cite><a href="#">常用资料</a><i></i></li>
-            <li><cite></cite><a href="#">信息列表</a><i></i></li>
-            <li><cite></cite><a href="#">其他</a><i></i></li>
-        </ul>
 
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">卡片管理</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">体检卡初始化</a></li>
+                    <li><a href="javascript:;">体检卡查询</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="right.html" target="rightFrame">系统管理</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">人员设置</a></li>
+                    <li><a href="javascript:;">角色配置</a></li>
+                    <li><a href="javascript:;">权限配置</a></li>
+                    <li><a href="javascript:;">菜单配置</a></li>
+                    <li><a href="javascript:;">科室设置</a></li>
+                    <li><a href="javascript:;">细项配置</a></li>
+                    <li><a href="javascript:;">项目配置</a></li>
+                    <li><a href="javascript:;">套餐配置</a></li>
+                </ul>
+            </li>
+        </ul>
     </dd>
+    <dd>
+        <div class="title">
+            <span><img src="images/leftico01.png" /></span>通用功能
+        </div>
+        <ul class="menuson">
+
+            <li>
+                <div class="header">
+                    <cite></cite>
+                    <a href="index.html" target="rightFrame">辅助功能</a>
+                    <i></i>
+                </div>
+                <ul class="sub-menus">
+                    <li><a href="javascript:;">登录</a></li>
+                    <li><a href="javascript:;">退出</a></li>
+                    <li><a href="javascript:;">修改密码</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </dd>
+
+
 
 </dl>
 
