@@ -105,7 +105,7 @@
                     <i></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="javascript:;">建卡</a></li>
+                    <li><a href="charge/tocard" target="rightFrame">建卡</a></li>
                     <li><a href="javascript:;">结算</a></li>
                 </ul>
             </li>
