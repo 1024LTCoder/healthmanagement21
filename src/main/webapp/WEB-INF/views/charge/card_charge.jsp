@@ -123,12 +123,7 @@
             </tbody>
         </table>
 
-
-
     </div>
-
-
-
 
 </div>
 

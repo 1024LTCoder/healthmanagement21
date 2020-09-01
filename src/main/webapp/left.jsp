@@ -67,7 +67,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">体检工作</a>
+                    <a href="#">体检工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -81,7 +81,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="right.html" target="rightFrame">统计查询</a>
+                    <a href="#">统计查询</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -101,7 +101,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">收费工作</a>
+                    <a href="#">收费工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -120,7 +120,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">医生工作</a>
+                    <a href="#">医生工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -140,19 +140,19 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">卡片管理</a>
+                    <a href="#">卡片管理</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="javascript:;">体检卡初始化</a></li>
-                    <li><a href="javascript:;">体检卡查询</a></li>
+                    <li><a href="manage/toinitcard" target="rightFrame">体检卡初始化</a></li>
+                    <li><a href="manage/toquerycard" target="rightFrame">体检卡查询</a></li>
                 </ul>
             </li>
 
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="right.html" target="rightFrame">系统管理</a>
+                    <a href="#" target="rightFrame">系统管理</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -177,7 +177,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="index.html" target="rightFrame">辅助功能</a>
+                    <a href="#">辅助功能</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">

@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/charge")
 public class ChargeController {
 
-    //跳转至建卡页面
+    /**
+     * 跳转至建卡页面
+     * @return
+     */
     @RequestMapping("/tocard")
     public String toCard(){
         return "charge/card_charge";
     }
+
+
 }
