@@ -1,3 +1,4 @@
+import com.service.IManageService;
 import com.utils.TestSpring;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,4 +18,5 @@ public class test {
     public void test(){
         testSpring.test_s();
     }
+
 }

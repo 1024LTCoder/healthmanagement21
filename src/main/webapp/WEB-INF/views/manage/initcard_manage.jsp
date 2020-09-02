@@ -5,7 +5,8 @@
   Time: 20:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%
     String path = request.getContextPath();
@@ -37,8 +38,14 @@
             $(".cancel").click(function(){
                 $(".tip").fadeOut(100);
             });
-
         });
+
+        function delCard(_id) {
+            var flag = confirm("是否删除");
+            if(flag){
+                location.href="manage/delCard?cardId="+_id;
+            }
+        }
     </script>
 
 
@@ -58,10 +65,10 @@
 <div class="rightinfo">
 
     <ul class="prosearch">
-        <form action="" method="post">
+        <form action="manage/addCards" method="post">
             <li><label>请输入卡片数量：</label>
-                <a><input name="" type="text" class="scinput" /></a>
-                <a><input name="" type="submit" class="sure" value="卡片初始化"/></a>
+                <a><input name="addNo" type="text" class="scinput" /></a>
+                <a><input type="submit" class="sure" value="卡片初始化"/></a>
             </li>
         </form>
     </ul>
@@ -74,16 +81,25 @@
                 <th>序号</th>
                 <th>卡片编号</th>
                 <th>余额</th>
+                <th>是否被使用</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>20130908</td>
-                <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-                <td>admin</td>
-                <td><a href="#" class="tablelink">删除</a></td>
-            </tr>
+            <c:forEach items="${cards}" var="c">
+                <tr>
+                    <td>${c.cardId}</td>
+                    <td>${c.cardNo}</td>
+                    <td>${c.cardMoney}</td>
+                    <c:if test="${c.person == null}">
+                        <td>否</td>
+                    </c:if>
+                    <c:if test="${c.person != null}">
+                        <td>是</td>
+                    </c:if>
+                    <td><a href="javaScript:void(0)" onclick="delCard(${c.cardId})" class="tablelink">删除</a></td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

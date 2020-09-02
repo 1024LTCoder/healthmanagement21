@@ -5,7 +5,9 @@
   Time: 20:38
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%
@@ -40,6 +42,13 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(function(){
+            $("#vv").click(function(){
+                $(".scinput1").val('');
+            });
+        });
+    </script>
 </head>
 
 <body class="sarchbody">
@@ -56,33 +65,33 @@
 
     <div id="usual1" class="usual">
 
-        <form action="" method="post">
+        <form action="manage/queryCards" method="post">
             <ul class="seachform1">
-                <li><label>序号</label><input name="" type="text" class="scinput1" /></li>
-                <li><label>卡片编号</label><input name="" type="text" class="scinput1" /></li>
-                <li><label>持卡人姓名</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>序号</label><input name="cardId" type="text" class="scinput1" value="${card.cardId}"/></li>
+                <li><label>卡片编号</label><input name="cardNo" type="text" class="scinput1" value="${card.cardNo}"/></li>
+                <li><label>持卡人姓名</label><input name="perName" type="text" class="scinput1" value="${person.perName}"/></li>
             </ul>
 
             <ul class="seachform2">
 
-                <li><label>持卡人电话</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>持卡人电话</label><input name="perTele" type="text" class="scinput1" value="${person.perTele}"/></li>
                 <li><label>持卡人性别</label>
                     <div class="vocation">
                         <select class="select3" name="perSex">
-                            <option value="null"></option>
-                            <option value="男">男</option>
-                            <option value="女">女</option>
+                            <option value="">null</option>
+                            <option value="男" ${person.perSex=="男"?"selected":""}>男</option>
+                            <option value="女" ${person.perSex=="女"?"selected":""}>女</option>
                         </select>
                     </div>
                 </li>
                 <li><label>持卡人血型</label>
                     <div class="vocation">
                         <select class="select3" name="perBlood">
-                            <option value="null"></option>
-                            <option value="A">A型</option>
-                            <option value="B">B型</option>
-                            <option value="AB">AB型</option>
-                            <option value="O">O型</option>
+                            <option value="">null</option>
+                            <option value="A" ${person.perBlood=="A"?"selected":""}>A型</option>
+                            <option value="B" ${person.perBlood=="B"?"selected":""}>B型</option>
+                            <option value="AB" ${person.perBlood=="AB"?"selected":""}>AB型</option>
+                            <option value="O" ${person.perBlood=="O"?"selected":""}>O型</option>
                         </select>
                     </div>
                 </li>
@@ -94,7 +103,7 @@
                     <label>&nbsp;</label>
                     <input type="submit" class="scbtn" value="查询"/>
                     <input type="button" class="scbtn1" value="更多条件"/>
-                    <input type="reset" class="scbtn2" value="复位"/>
+                    <input type="button" class="scbtn2" id="vv" value="复位"/>
                 </li>
             </ul>
         </form>
@@ -129,28 +138,32 @@
         <table class="tablelist">
 
             <thead>
-            <tr>
-                <th>序号</th>
-                <th>卡片编号</th>
-                <th>持卡人姓名</th>
-                <th>持卡人性别</th>
-                <th>持卡人血型</th>
-                <th>持卡人出生年月</th>
-                <th>持卡人电话</th>
-                <th>持卡人住址</th>
-            </tr>
+                <tr>
+                    <th>序号</th>
+                    <th>卡片编号</th>
+                    <th>持卡人姓名</th>
+                    <th>持卡人性别</th>
+                    <th>持卡人血型</th>
+                    <th>持卡人出生年月</th>
+                    <th>持卡人电话</th>
+                    <th>持卡人住址</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>20130908</td>
-                <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-                <td>admin</td>
-                <td>20130908</td>
-                <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-                <td>admin</td>
-                <td>20130908</td>
-                <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-            </tr>
+            <c:forEach items="${cards}" var="c">
+                <tr>
+                    <td>${c.cardId}</td>
+                    <td>${c.cardNo}</td>
+                    <td>${c.person.perName}</td>
+                    <td>${c.person.perSex}</td>
+                    <td>${c.person.perBlood}</td>
+                    <td>
+                        <fmt:formatDate value="${c.person.perBorn}" pattern="yyyy-MM-dd"/>
+                    </td>
+                    <td>${c.person.perTele}</td>
+                    <td>${c.person.perAddr}</td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
 

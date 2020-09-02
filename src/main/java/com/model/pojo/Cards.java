@@ -1,53 +1,53 @@
 package com.model.pojo;
 
 public class Cards {
-    private Integer card_id;
-    private Integer per_id;
-    private String card_no;
-    private Double card_money;
+    private Integer cardId;
+    private Integer perId;
+    private String cardNo;
+    private Double cardMoney;
     private Person person;
-
-    public Cards(Integer card_id, Integer per_id, String card_no, Double card_money, Person person) {
-        this.card_id = card_id;
-        this.per_id = per_id;
-        this.card_no = card_no;
-        this.card_money = card_money;
-        this.person = person;
-    }
 
     public Cards() {
     }
 
-    public Integer getCard_id() {
-        return card_id;
+    public Cards(Integer cardId, Integer perId, String cardNo, Double cardMoney, Person person) {
+        this.cardId = cardId;
+        this.perId = perId;
+        this.cardNo = cardNo;
+        this.cardMoney = cardMoney;
+        this.person = person;
     }
 
-    public void setCard_id(Integer card_id) {
-        this.card_id = card_id;
+    public Integer getCardId() {
+        return cardId;
     }
 
-    public Integer getPer_id() {
-        return per_id;
+    public void setCardId(Integer cardId) {
+        this.cardId = cardId;
     }
 
-    public void setPer_id(Integer per_id) {
-        this.per_id = per_id;
+    public Integer getPerId() {
+        return perId;
     }
 
-    public String getCard_no() {
-        return card_no;
+    public void setPerId(Integer perId) {
+        this.perId = perId;
     }
 
-    public void setCard_no(String card_no) {
-        this.card_no = card_no;
+    public String getCardNo() {
+        return cardNo;
     }
 
-    public Double getCard_money() {
-        return card_money;
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
     }
 
-    public void setCard_money(Double card_money) {
-        this.card_money = card_money;
+    public Double getCardMoney() {
+        return cardMoney;
+    }
+
+    public void setCardMoney(Double cardMoney) {
+        this.cardMoney = cardMoney;
     }
 
     public Person getPerson() {
@@ -61,10 +61,10 @@ public class Cards {
     @Override
     public String toString() {
         return "Cards{" +
-                "card_id=" + card_id +
-                ", per_id=" + per_id +
-                ", card_no='" + card_no + '\'' +
-                ", card_money=" + card_money +
+                "cardId=" + cardId +
+                ", perId=" + perId +
+                ", cardNo='" + cardNo + '\'' +
+                ", cardMoney=" + cardMoney +
                 ", person=" + person +
                 '}';
     }

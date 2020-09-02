@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ManageMapper">
+    <resultMap id="cardsPerson" type="cards" autoMapping="true">
+        <id column="card_id" property="cardId"/>
+        <association property="person" javaType="person" autoMapping="true">
+            <id column="per_id" property="perId"/>
+        </association>
+    </resultMap>
+
+    <!--查询所有的cards信息-->
+    <select id="findAllCards" resultMap="cardsPerson" parameterType="cards">
+        select * from cards c LEFT JOIN person p ON c.per_id=p.per_id
+        <where>
+            <if test="cardId!=null">
+                AND c.card_id = #{cardId}
+            </if>
+            <if test="cardNo!=null and cardNo!=''">
+                AND card_no LIKE '%${cardNo}%'
+            </if>
+            <if test="person.perName!=null and person.perName!=''">
+                AND per_name LIKE '%${person.perName}%'
+            </if>
+            <if test="person.perTele!=null and person.perTele!=''">
+                AND per_tele LIKE '%${person.perTele}%'
+            </if>
+            <if test="person.perSex!=null and person.perSex!=''">
+                AND per_sex = #{person.perSex}
+            </if>
+            <if test="person.perBlood!=null and person.perBlood!=''">
+                AND per_blood = #{person.perBlood}
+            </if>
+        </where>
+    </select>
+
+    <!--查询cards表中ID的最大值。-->
+    <select id="maxCardId" resultType="integer">
+        select MAX(card_id) from cards
+    </select>
+
+    <!--批量添加cards。-->
+    <insert id="addCards" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="cardId" keyColumn="card_id">
+        insert into cards
+        values
+        <foreach collection="list" item="item" separator=",">
+            (null,null,#{item.cardsNo},0)
+        </foreach>
+    </insert>
+
+
+</mapper>
