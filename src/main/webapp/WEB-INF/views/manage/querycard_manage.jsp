@@ -48,6 +48,9 @@
                 $(".scinput1").val('');
             });
         });
+        function detailCard(_id) {
+                location.href="manage/toDetailCard?cardId="+_id;
+        }
     </script>
 </head>
 
@@ -56,8 +59,8 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">卡片管理</a></li>
-        <li><a href="#">体检卡查询</a></li>
+        <li><a>卡片管理</a></li>
+        <li><a href="manage/toquerycard">体检卡查询</a></li>
     </ul>
 </div>
 
@@ -147,6 +150,7 @@
                     <th>持卡人出生年月</th>
                     <th>持卡人电话</th>
                     <th>持卡人住址</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -162,6 +166,7 @@
                     </td>
                     <td>${c.person.perTele}</td>
                     <td>${c.person.perAddr}</td>
+                    <td><a href="javaScript:void(0)" onclick="detailCard(${c.cardId})" class="tablelink">详情</a></td>
                 </tr>
             </c:forEach>
             </tbody>

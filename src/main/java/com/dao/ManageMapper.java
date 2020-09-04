@@ -2,7 +2,7 @@ package com.dao;
 
 import com.model.pojo.Cards;
 import com.model.pojo.CardsNo;
-import org.apache.ibatis.annotations.Param;
+import com.model.pojo.Users;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,5 +27,40 @@ public interface ManageMapper {
      */
     void addCards(List<CardsNo> list);
 
+    /**
+     * 删除card卡
+     * @param cards
+     */
+    void delCard(Cards cards);
 
+    /**
+     * 查询所有的user对象。
+     * @return
+     */
+    List<Users> queryUsers();
+
+    /**
+     * 添加user对象
+     * @param users
+     */
+    void addUser(Users users);
+
+    /**
+     * 通过userID删除user
+     * @param users
+     */
+    void delUserById(Users users);
+
+    /**
+     * 通过userId查询单个user对象。
+     * @param users
+     * @return
+     */
+    Users queryUserById(Users users);
+
+    /**
+     * 通过userId修改user对象
+     * @param users
+     */
+    void updateUserById(Users users);
 }

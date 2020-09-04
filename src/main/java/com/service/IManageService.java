@@ -2,6 +2,7 @@ package com.service;
 
 import com.model.pojo.Cards;
 import com.model.pojo.CardsNo;
+import com.model.pojo.Users;
 
 import java.util.List;
 
@@ -23,4 +24,41 @@ public interface IManageService {
      * @param cardsNum
      */
     void addCards(int cardsNum);
+
+    /**
+     * 删除card卡
+     * @param cards
+     */
+    void delCard(Cards cards);
+
+    /**
+     * 显示所有的user对象
+     * @return
+     */
+    List<Users> showUsers();
+
+    /**
+     * 添加user对象
+     * @param users
+     */
+    void addUser(Users users);
+
+    /**
+     * 通过userID删除user
+     * @param users
+     */
+    void delUserById(Users users);
+
+    /**
+     * 通过userId查询单个user对象。
+     * @param users
+     * @return
+     */
+    Users queryUserById(Users users);
+
+    /**
+     * 通过userId修改user对象
+     * @param users
+     */
+    void updateUserById(Users users);
 }

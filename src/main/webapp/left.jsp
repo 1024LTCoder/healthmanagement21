@@ -67,7 +67,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="#">体检工作</a>
+                    <a>体检工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -81,7 +81,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="#">统计查询</a>
+                    <a>统计查询</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -101,7 +101,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="#">收费工作</a>
+                    <a>收费工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -120,7 +120,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="#">医生工作</a>
+                    <a>医生工作</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -140,7 +140,7 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="#">卡片管理</a>
+                    <a>卡片管理</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
@@ -152,11 +152,11 @@
             <li>
                 <div class="header">
                     <cite></cite>
-                    <a href="#" target="rightFrame">系统管理</a>
+                    <a>系统管理</a>
                     <i></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="javascript:;">人员设置</a></li>
+                    <li><a href="manage/toUsersManage" target="rightFrame">人员设置</a></li>
                     <li><a href="javascript:;">角色配置</a></li>
                     <li><a href="javascript:;">权限配置</a></li>
                     <li><a href="javascript:;">菜单配置</a></li>

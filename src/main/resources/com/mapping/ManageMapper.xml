@@ -10,6 +10,8 @@
         </association>
     </resultMap>
 
+    <!--  ************************卡片管理模块************************   -->
+
     <!--查询所有的cards信息-->
     <select id="findAllCards" resultMap="cardsPerson" parameterType="cards">
         select * from cards c LEFT JOIN person p ON c.per_id=p.per_id
@@ -49,5 +51,67 @@
         </foreach>
     </insert>
 
+    <!--通过cardId删除指定的card-->
+    <delete id="delCard" parameterType="cards">
+        delete from cards where card_id=#{cardId}
+    </delete>
+
+
+    <!--  ************************系统管理模块、用户管理部分************************   -->
+
+    <resultMap id="usersOfficePriority" type="users" autoMapping="true">
+        <id column="user_id" property="userId"/>
+        <association property="office" javaType="office" autoMapping="true">
+            <id column="off_id" property="offId"/>
+        </association>
+        <association property="priority" javaType="priority" autoMapping="true">
+            <id column="prio_id" property="prioId"/>
+        </association>
+    </resultMap>
+
+    <!--查询所有的users-->
+    <select id="queryUsers" resultMap="usersOfficePriority">
+        select * from
+            users u
+        LEFT JOIN
+            office o
+        ON
+            u.off_id=o.off_id
+        LEFT JOIN
+            priority p
+        ON
+            u.user_prio_id=p.prio_id
+    </select>
+
+    <!--查询通过userId查询单个user对象-->
+    <select id="queryUserById" parameterType="users" resultMap="usersOfficePriority">
+        select * from
+            users u
+        LEFT JOIN
+            office o
+        ON
+            u.off_id=o.off_id
+        LEFT JOIN
+            priority p
+        ON
+            u.user_prio_id=p.prio_id
+        WHERE u.user_id=#{userId}
+    </select>
+
+    <!--添加user对象-->
+    <insert id="addUser" parameterType="users">
+        INSERT INTO users VALUES(null,#{offId},#{userName},#{userPwd},#{userPrioId});
+    </insert>
+
+    <!--删除user对象通过userId-->
+    <delete id="delUserById" parameterType="users">
+        delete from users where user_id=#{userId}
+    </delete>
+
+    <update id="updateUserById" parameterType="users">
+        UPDATE users
+        SET `off_id`=#{offId}, `user_name`=#{userName}, `user_pwd`=#{userPwd}, `user_prio_id`=#{userPrioId}
+        WHERE (`user_id`=#{userId});
+    </update>
 
 </mapper>

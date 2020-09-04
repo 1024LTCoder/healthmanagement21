@@ -40,14 +40,17 @@
             });
         });
 
+    </script>
+
+    <script type="text/javascript">
+        /*删除卡片操作*/
         function delCard(_id) {
-            var flag = confirm("是否删除");
+            var flag = confirm("是否删除卡片，序号为:"+_id+"?");
             if(flag){
                 location.href="manage/delCard?cardId="+_id;
             }
         }
     </script>
-
 
 </head>
 
@@ -57,8 +60,8 @@
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="#">卡片管理</a></li>
-        <li><a href="#">体检卡初始化</a></li>
+        <li><a>卡片管理</a></li>
+        <li><a href="manage/toinitcard">体检卡初始化</a></li>
     </ul>
 </div>
 
@@ -91,13 +94,13 @@
                     <td>${c.cardId}</td>
                     <td>${c.cardNo}</td>
                     <td>${c.cardMoney}</td>
-                    <c:if test="${c.person == null}">
+                    <c:if test="${c.perId == null}">
                         <td>否</td>
+                        <td><a href="javaScript:void(0)" onclick="delCard(${c.cardId})" class="tablelink">删除</a></td>
                     </c:if>
-                    <c:if test="${c.person != null}">
+                    <c:if test="${c.perId != null}">
                         <td>是</td>
                     </c:if>
-                    <td><a href="javaScript:void(0)" onclick="delCard(${c.cardId})" class="tablelink">删除</a></td>
                 </tr>
             </c:forEach>
         </tbody>
