@@ -1,5 +1,7 @@
 package com.model.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Person {
@@ -9,6 +11,7 @@ public class Person {
     private Integer perAge;
     private String perAddr;
     private String perBlood;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date perBorn;
     private Integer cardId;
     private String perSex;

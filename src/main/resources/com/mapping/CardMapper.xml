@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PersonMapper">
+
+    <!--person 与 cards 1对1-->
+    <resultMap id="Patient" type="person" autoMapping="true">
+        <!--per_id:主键字段与pojo属性对应-->
+        <id column="per_id" property="perId" />
+        <association property="cards" javaType="cards" autoMapping="true">
+            <id column="card_id" property="cardId" />
+        </association>
+    </resultMap>
+
+    <select id="findCard" resultMap="Patient">
+        select * from person LEFT JOIN cards ON person.card_id=cards.card_id;
+    </select>
+
+    <insert id="addCard" parameterType="person" useGeneratedKeys="true" keyProperty="perId" keyColumn="per_id">
+        INSERT INTO `health_management`.`person` (`per_name`, `per_tele`, `per_age`, `per_addr`, `per_blood`, `per_born`, `card_id`, `per_sex`) VALUES (#{perName}, #{perTele}, #{perAge}, #{perAddr}, #{perBlood}, #{perBorn}, #{cardId}, #{perSex});
+    </insert>
+
+    <delete id="delCard" parameterType="person">
+        delete from `health_management`.`person` where per_id=#{perId}
+    </delete>
+
+    <select id="searchCardById" resultMap="Patient">
+        select * from person LEFT JOIN cards ON person.card_id=cards.card_id where person.per_id=#{perId};
+    </select>
+</mapper>

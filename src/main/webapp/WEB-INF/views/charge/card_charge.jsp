@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -5,7 +6,8 @@
   Time: 16:48
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%
@@ -30,6 +32,13 @@
                 id : 'content7',
                 cssPath : './index.css'
             });
+
+            function confimDel(_pid) {
+                var flag=confirm("是否删除");
+                if(flag){
+                    location.href="charge/doDelCard?perId="+_pid;
+                }
+            }
         </script>
 
         <script type="text/javascript">
@@ -60,19 +69,22 @@
 
 
         <ul class="seachform1">
-            <form action="" method="post">
-                <li><label>姓名</label><input name="" type="text" class="scinput1" /></li>
+            <form action="charge/doAddCard" method="post">
+                <li><label>姓名</label><input name="perName" type="text" class="scinput1" required="true"/></li>
                 <li><label>性别</label>
                     <div class="vocation">
-                        <select class="select3" name="perSex">
+                        <select class="select3" name="perSex" required="true">
+                            <option value=> </option>
                             <option value="男">男</option>
                             <option value="女">女</option>
                         </select>
                     </div>
                 </li>
+
                 <li><label>血型</label>
                     <div class="vocation">
                         <select class="select3" name="perBlood">
+                            <option value=> </option>
                             <option value="A">A型</option>
                             <option value="B">B型</option>
                             <option value="AB">AB型</option>
@@ -81,11 +93,13 @@
                     </div>
                 </li>
 
-                <li><label>出生年月</label><input name="" type="date" class="scinput1" /></li>
-                <li><label>电话</label><input name="" type="text" class="scinput1" /></li>
-                <li><label>卡号</label><input name="" type="text" class="scinput1" /></li>
+                <li><label>年龄</label><input name="perAge" type="text" class="scinput1" required="true"/></li>
+                <li><label>出生年月</label><input name="perBorn" type="date" class="scinput1" /></li>
+                <li><label>电话</label><input name="perTele" type="text" class="scinput1" required="true"/></li>
 
-                <li><label>住址</label><input name="" type="text" class="dfinput" /></li>
+                <br><br><br><br><br><br>
+                <li><label>住址</label><input name="perAddr" type="text" class="dfinput" /></li>
+                <li><label>卡号</label><input name="cards.cardId" type="text" class="scinput1" /></li>
 
                 <li class="sarchbtn"><label>&nbsp;</label>
                     <label>&nbsp;</label><input name="" type="submit" class="scbtn" value="新增"/>
@@ -95,31 +109,34 @@
         </ul>
 
         <br><br><br><br><br><br><br><br>
-        <div class="formtitle"><span>体检人列表</span></div>
+        <div class="formtitle"><span>卡片列表</span></div>
 
         <table class="tablelist">
 
             <thead>
             <tr>
-                <th>卡号</th>
+                <th>就诊卡编号</th>
+                <th>患者编号</th>
                 <th>姓名</th>
-                <th>性别</th>
-                <th>血型</th>
-                <th>出生年月</th>
-                <th>电话</th>
-                <th>住址</th>
+                <th>就诊卡号</th>
+                <th>就诊卡金额</th>
+                <th>操作</th>
             </tr>
             </thead>
+
             <tbody>
-            <tr>
-                <td>20130908</td>
-                <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-                <td>admin</td>
-                <td>江苏南京</td>
-                <td>2013-09-09 15:05</td>
-                <td>已审核</td>
-                <td><a href="#" class="tablelink">查看</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <f:forEach var="p" items="${persons}">
+                <tr>
+                    <td>${p.cards.cardId}</td>
+                    <td>${p.perId}</td>
+                    <td>${p.perName}</td>
+                    <td>${p.cards.cardNo}</td>
+                    <td>${p.cards.cardMoney}</td>
+                    <td><a href="charge/searchById?perId=${p.perId}" class="tablelink">查看</a>&nbsp;&nbsp;
+                        <a href="javascript:void(0)" class="tablelink" onclick="confimDel(${p.perId})">删除</a>
+                    </td>
+                </tr>
+            </f:forEach>
             </tbody>
         </table>
 

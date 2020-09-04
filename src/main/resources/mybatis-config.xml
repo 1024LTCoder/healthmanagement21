@@ -14,4 +14,9 @@
     <typeAliases>
         <package name="com.model"/>
     </typeAliases>
+
+    <!--<mappers>
+        <mapper resource="mapping/CardMapper.xml"/>
+        <mapper resource="mapping/UserMapper.xml"/>
+    </mappers>-->
 </configuration>
