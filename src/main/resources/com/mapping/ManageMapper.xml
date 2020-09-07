@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.ManageMapper">
+
     <resultMap id="cardsPerson" type="cards" autoMapping="true">
         <id column="card_id" property="cardId"/>
         <association property="person" javaType="person" autoMapping="true">
@@ -70,7 +71,7 @@
     </resultMap>
 
     <!--查询所有的users-->
-    <select id="queryUsers" resultMap="usersOfficePriority">
+    <select id="queryUsers" resultMap="usersOfficePriority" parameterType="users">
         select * from
             users u
         LEFT JOIN
@@ -81,6 +82,20 @@
             priority p
         ON
             u.user_prio_id=p.prio_id
+        <where>
+            <if test="userName!=null and userName!=''">
+                AND u.user_name LIKE '%${userName}%'
+            </if>
+            <if test="userPwd!=null and userPwd!=''">
+                AND u.user_pwd LIKE '%${userPwd}%'
+            </if>
+            <if test="offId!=null">
+                AND u.off_id = #{offId}
+            </if>
+            <if test="userPrioId!=null">
+                AND u.user_prio_id LIKE '%${userPrioId}%'
+            </if>
+        </where>
     </select>
 
     <!--查询通过userId查询单个user对象-->
@@ -99,7 +114,7 @@
     </select>
 
     <!--添加user对象-->
-    <insert id="addUser" parameterType="users">
+    <insert id="addUser" parameterType="users" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
         INSERT INTO users VALUES(null,#{offId},#{userName},#{userPwd},#{userPrioId});
     </insert>
 
@@ -113,5 +128,167 @@
         SET `off_id`=#{offId}, `user_name`=#{userName}, `user_pwd`=#{userPwd}, `user_prio_id`=#{userPrioId}
         WHERE (`user_id`=#{userId});
     </update>
+
+    <!--  ************************系统管理模块、角色管理部分************************   -->
+
+    <!--查询所有的权限角色-->
+    <select id="queryPriorities" resultType="priority">
+        SELECT * FROM priority
+    </select>
+
+    <!--通过prioId删除priority。-->
+    <delete id="delPriorityById" parameterType="priority">
+        delete from priority where prio_id=#{prioId}
+    </delete>
+
+    <!--添加priority-->
+    <insert id="addPriority" parameterType="priority" useGeneratedKeys="true" keyProperty="prioId" keyColumn="prio_id">
+        INSERT INTO priority VALUES (null, #{prioName}, #{prioDesc});
+    </insert>
+
+    <!--根据prioId查询指定的priority对象-->
+    <select id="queryPriorityById" resultType="priority">
+        SELECT * FROM priority WHERE prio_id=#{prioId}
+    </select>
+
+    <!--根据prioId对指定的priority修改-->
+    <update id="updatePriorityById" parameterType="priority">
+        UPDATE priority SET `prio_name`=#{prioName}, `prio_desc`=#{prioDesc} WHERE (`prio_id`=#{prioId})
+    </update>
+
+
+    <!--  ************************系统管理模块、科室管理部分************************   -->
+
+    <!--查询所有的office-->
+    <select id="queryOffices" resultType="office">
+        SELECT * FROM office
+    </select>
+
+    <!--通过offId删除office。-->
+    <delete id="delOfficeById" parameterType="office">
+        delete from office where off_id=#{offId}
+    </delete>
+
+    <!--添加office-->
+    <insert id="addOffice" parameterType="office" useGeneratedKeys="true" keyProperty="offId" keyColumn="off_id">
+        INSERT INTO office VALUES (null, #{offName});
+    </insert>
+
+    <!--根据offId查询指定的office对象-->
+    <select id="queryOfficeById" resultType="office">
+        SELECT * FROM office WHERE off_id=#{offId}
+    </select>
+
+    <!--根据prioId对指定的priority修改-->
+    <update id="updateOfficeById" parameterType="office">
+        UPDATE office SET off_name=#{offName} WHERE (off_id=#{offId})
+    </update>
+
+
+    <!--  ************************系统管理模块、细项管理部分************************   -->
+
+    <!--查询所有的SubItems-->
+    <select id="querySubItems" resultType="subItem">
+        SELECT * FROM subitem
+        <where>
+            <if test="itemId!=null">
+                AND item_id = #{itemId}
+            </if>
+            <if test="subName!=null and subName!=''">
+                AND sub_name LIKE '%${subName}%'
+            </if>
+            <if test="subCode!=null and subCode!=''">
+                AND sub_code LIKE '%${subCode}%'
+            </if>
+            <if test="subRefer!=null">
+                AND sub_refer = #{subRefer}
+            </if>
+            <if test="subUnit!=null and subUnit!=''">
+                AND sub_unit LIKE '%${subUnit}%'
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有没有项目的子项目-->
+    <select id="querySubItemsWithNull" resultType="subItem">
+        SELECT * FROM subitem WHERE item_id = null;
+    </select>
+
+    <!--通过offId删除SubItem。-->
+    <delete id="delSubItemById" parameterType="subItem">
+        delete from subitem where sub_id=#{subId}
+    </delete>
+
+    <!--添加SubItem-->
+    <insert id="addSubItem" parameterType="subItem" useGeneratedKeys="true" keyProperty="subId" keyColumn="sub_id">
+        INSERT INTO subitem VALUES (null, #{subName}, #{subCode}, #{subPrice}, #{itemId}, #{subUnit}, #{subRefer}, #{subUpper}, #{subLower});
+    </insert>
+
+    <!--根据subId查询指定的SubItem对象-->
+    <select id="querySubItemById" resultType="subItem">
+        SELECT * FROM subitem WHERE sub_id=#{subId}
+    </select>
+
+    <!--根据subId对指定的SubItem修改-->
+    <update id="updateSubItemById" parameterType="subItem">
+        UPDATE subitem SET `sub_name`=#{subName}, `sub_code`=#{subCode}, `sub_price`=#{subPrice}, `item_id`=#{itemId}, `sub_unit`=#{subUnit}, `sub_refer`=#{subRefer}, `sub_upper`=#{subUpper}, `sub_lower`=#{subLower} WHERE (sub_id=#{subId});
+    </update>
+
+    <!--  ************************系统管理模块、项目管理部分************************   -->
+    <resultMap id="ItemOfficeAssociationSubItem" type="item" autoMapping="true">
+        <!--对应数据库中的主键列以及实体类中属性。-->
+        <id column="item_id" property="itemId"/>
+        <association property="office" javaType="office" autoMapping="true">
+            <id column="off_id" property="offId"/>
+        </association>
+        <!--association里的property对应的是item类里面的itemType，Javatype对应的是pojo包下的实体类，autoMapping自动映射-->
+        <association property="itemType" javaType="itemType" autoMapping="true">
+            <!--column对应item中的外键列，property对应pojo包下的实体类属性。-->
+            <id column="type_id" property="typeId"/>
+        </association>
+        <!--一对多使用collection，property对应的是item类里的属性类，Javatype如果是list类型返回List类型，oftype对应pojo包下的实体类-->
+        <collection property="subItems" javaType="List" ofType="com.model.pojo.SubItem" autoMapping="true">
+            <!--写入SubItem的主键及其对应的类中的属性。-->
+            <id column="sub_id" property="subId"/>
+        </collection>
+    </resultMap>
+
+    <!--查询所有的item项目-->
+    <select id="queryItems" resultMap="ItemOfficeAssociationSubItem" parameterType="item">
+        SELECT * FROM item i
+        LEFT JOIN office o
+        ON i.off_id=o.off_id
+        LEFT JOIN item_type it
+        ON i.item_type_id=it.type_id
+        LEFT JOIN subitem s
+        ON i.item_id=s.item_id
+        <where>
+            <if test="itemId!=null">
+                AND i.item_id = #{itemId}
+            </if>
+            <if test="office.offName!=null and office.offName!=''">
+                AND o.off_name LIKE '%${office.offName}%'
+            </if>
+            <if test="itemName!=null and itemName!=''">
+                AND i.item_name LIKE '%${itemName}%'
+            </if>
+            <if test="itemCode!=null and itemCode!=''">
+                AND i.item_code = #{itemCode}
+            </if>
+            <if test="itemType.typeName!=null and itemType.typeName!=''">
+                AND it.type_name LIKE '%${itemType.typeName}%'
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有的itemtype。-->
+    <select id="queryItemType" resultType="itemType">
+        Select * FROM item_type
+    </select>
+
+    <!--添加item-->
+    <insert id="addItem" parameterType="item" useGeneratedKeys="true" keyProperty="itemId" keyColumn="item_id">
+        INSERT INTO item VALUES (null,#{offId},null,#{itemName},#{itemCode},#{itemPrice},#{itemTypeId})
+    </insert>
 
 </mapper>

@@ -157,12 +157,12 @@
                 </div>
                 <ul class="sub-menus">
                     <li><a href="manage/toUsersManage" target="rightFrame">人员设置</a></li>
-                    <li><a href="javascript:;">角色配置</a></li>
+                    <li><a href="manage/toRoleManage" target="rightFrame">角色配置</a></li>
                     <li><a href="javascript:;">权限配置</a></li>
                     <li><a href="javascript:;">菜单配置</a></li>
-                    <li><a href="javascript:;">科室设置</a></li>
-                    <li><a href="javascript:;">细项配置</a></li>
-                    <li><a href="javascript:;">项目配置</a></li>
+                    <li><a href="manage/toOfficeManage" target="rightFrame">科室设置</a></li>
+                    <li><a href="manage/toSubItemManage" target="rightFrame">细项配置</a></li>
+                    <li><a href="manage/toItemManage" target="rightFrame">项目配置</a></li>
                     <li><a href="javascript:;">套餐配置</a></li>
                 </ul>
             </li>

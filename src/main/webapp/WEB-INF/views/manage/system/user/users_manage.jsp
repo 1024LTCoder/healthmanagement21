@@ -44,13 +44,24 @@
             location.href="manage/toUpdateUser?userId="+_id;
         }
 
-        /*删除卡片操作*/
+        /*删除用户操作*/
         function delUser(_id,_name) {
             var flag = confirm("是否删除用户："+_name+"?");
             if(flag){
                 location.href="manage/delUser?userId="+_id;
             }
         }
+
+        /*跳转至添加user界面。*/
+        function toAddUser() {
+            location.href="manage/toAddUser";
+        }
+
+        $(function(){
+            $("#vv").click(function(){
+                $(".scinput1").val('');
+            });
+        });
     </script>
 </head>
 
@@ -60,7 +71,7 @@
     <span>位置：</span>
     <ul class="placeul">
         <li><a>系统管理</a></li>
-        <li><a href="#">用户管理</a></li>
+        <li><a href="manage/toUsersManage">用户管理</a></li>
     </ul>
 </div>
 
@@ -69,9 +80,9 @@
     <div id="usual1" class="usual">
 
         <ul class="seachform1">
-            <form action="manage/addUser" method="post">
-                <li><label>姓名</label><input name="userName" type="text" class="scinput1" /></li>
-                <li><label>密码</label><input name="userPwd" type="text" class="scinput1" /></li>
+            <form action="manage/queryUsers" method="post">
+                <li><label>姓名</label><input name="userName" type="text" class="scinput1" value="${user.userName}"/></li>
+                <li><label>密码</label><input name="userPwd" type="text" class="scinput1" value="${user.userPwd}"/></li>
                 <li><label>&nbsp;&nbsp;</label></li>
                 <li><label>&nbsp;&nbsp;</label></li>
 
@@ -79,8 +90,9 @@
                     <div class="vocation">
                         <select class="select3" name="offId">
                             <option value="">----请选择科室----</option>
-                            <option value="1">内科</option>
-                            <option value="2">外科</option>
+                            <c:forEach var="o" items="${offices}">
+                                <option value="${o.offId}" ${user.offId==o.offId?"selected":""}>${o.offName}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </li>
@@ -89,16 +101,18 @@
                     <div class="vocation">
                         <select class="select3" name="userPrioId">
                             <option value="">----请选择权限----</option>
-                            <option value="1">医生类</option>
-                            <option value="2">系统管理员</option>
+                            <c:forEach var="p" items="${priorities}">
+                                <option value="${p.prioId}" ${user.userPrioId==p.prioId?"selected":""}>${p.prioName}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </li>
                 <li><label>&nbsp;&nbsp;</label></li>
 
                 <li class="sarchbtn"><label>&nbsp;</label>
-                    <label>&nbsp;</label><input type="submit" class="scbtn" value="新增"/>
-                    <label>&nbsp;</label><input type="reset" class="scbtn1" value="复位"/>
+                    <label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/>
+                    <label>&nbsp;</label><input type="button" class="scbtn" onclick="toAddUser()" value="新增"/>
+                    <label>&nbsp;</label><input type="button" class="scbtn1" id="vv" value="复位"/>
                 </li>
 
             </form>
