@@ -39,6 +39,13 @@
                     location.href="charge/doDelCard?perId="+_pid;
                 }
             }
+
+            function confimGet() {
+                var flag=confirm("是否获取");
+                if(flag){
+                    location.href="charge/toGetCard";
+                }
+            }
         </script>
 
         <script type="text/javascript">
@@ -93,13 +100,13 @@
                     </div>
                 </li>
 
-                <li><label>年龄</label><input name="perAge" type="text" class="scinput1" required="true"/></li>
-                <li><label>出生年月</label><input name="perBorn" type="date" class="scinput1" /></li>
-                <li><label>电话</label><input name="perTele" type="text" class="scinput1" required="true"/></li>
+                <li><label>年龄:</label><input name="perAge" type="text" class="scinput1" required="true"/></li>
+                <li><label>出生年月:</label><input name="perBorn" type="date" class="scinput1" /></li>
+                <li><label>电话:</label><input name="perTele" type="text" class="scinput1" required="true"/></li>
 
                 <br><br><br><br><br><br>
-                <li><label>住址</label><input name="perAddr" type="text" class="dfinput" /></li>
-                <li><label>卡号</label><input name="cards.cardId" type="text" class="scinput1" /></li>
+                <li><label>住址:</label><input name="perAddr" type="text" class="dfinput" /></li>
+                <li><label>卡号:</label><input name="cards.cardNo" type="text" value="${cardNo}" class="scinput1" />&nbsp;<a href="javascript:void(0)" type="button" class="scbtn" onclick="confimGet(${p.perId})">获取卡号</a></li>
 
                 <li class="sarchbtn"><label>&nbsp;</label>
                     <label>&nbsp;</label><input name="" type="submit" class="scbtn" value="新增"/>
@@ -108,33 +115,36 @@
             </form>
         </ul>
 
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <div class="formtitle"><span>卡片列表</span></div>
 
         <table class="tablelist">
 
             <thead>
             <tr>
-                <th>就诊卡编号</th>
-                <th>患者编号</th>
+                <th>序号</th>
                 <th>姓名</th>
-                <th>就诊卡号</th>
-                <th>就诊卡金额</th>
-                <th>操作</th>
+                <th>性别</th>
+                <th>血型</th>
+                <th>出生年月</th>
+                <th>电话</th>
+                <th>住址</th>
             </tr>
             </thead>
 
             <tbody>
             <f:forEach var="p" items="${persons}">
                 <tr>
-                    <td>${p.cards.cardId}</td>
                     <td>${p.perId}</td>
                     <td>${p.perName}</td>
-                    <td>${p.cards.cardNo}</td>
-                    <td>${p.cards.cardMoney}</td>
-                    <td><a href="charge/searchById?perId=${p.perId}" class="tablelink">查看</a>&nbsp;&nbsp;
+                    <td>${p.perSex}</td>
+                    <td>${p.perBlood}</td>
+                    <td>${p.perBorn}</td>
+                    <td>${p.perTele}</td>
+                    <td>${p.perAddr}</td>
+                    <%--<td><a href="charge/searchById?perId=${p.perId}" class="tablelink">查看</a>&nbsp;&nbsp;
                         <a href="javascript:void(0)" class="tablelink" onclick="confimDel(${p.perId})">删除</a>
-                    </td>
+                    </td>--%>
                 </tr>
             </f:forEach>
             </tbody>
@@ -144,7 +154,9 @@
 
 </div>
 
-
+<%
+    session.removeAttribute("cardsList");
+%>
 </body>
 
 </html>

@@ -71,7 +71,7 @@
                     <i></i>
                 </div>
                 <ul class="sub-menus">
-                    <li><a href="javascript:;">开单</a></li>
+                    <li><a href="items/toFindItemsList" target="rightFrame">开单</a></li>
                     <li><a href="javascript:;">打印导捡单和条码</a></li>
                     <li><a href="javascript:;">体验报告打印</a></li>
                 </ul>
@@ -86,7 +86,7 @@
                 </div>
                 <ul class="sub-menus">
                     <li><a href="javascript:;">体验综合查询</a></li>
-                    <li><a href="javascript:;">体验人员查询</a></li>
+                    <li><a href="charge/toSearchById" target="rightFrame">体验人员查询</a></li>
                 </ul>
             </li>
 

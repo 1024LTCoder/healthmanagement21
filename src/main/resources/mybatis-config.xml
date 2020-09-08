@@ -16,7 +16,7 @@
     </typeAliases>
 
     <!--<mappers>
-        <mapper resource="mapping/CardMapper.xml"/>
+        <mapper resource="mapping/PersonMapper.xml"/>
         <mapper resource="mapping/UserMapper.xml"/>
     </mappers>-->
 </configuration>

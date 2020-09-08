@@ -53,11 +53,13 @@
 
 <body class="sarchbody">
 
+
+
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
         <li><a href="#">首页</a></li>
-        <li><a href="#">就诊卡详情</a></li>
+        <li><a href="#">体检人员信息</a></li>
     </ul>
 </div>
 
@@ -65,23 +67,29 @@
 
 
     <div id="usual1" class="usual">
-
-
+        <form action="charge/searchById" method="post">
+            <li><label>请输入体检人卡片编号:</label><input name="cards.cardNo" type="text" class="scinput1" />
+                <label>&nbsp;&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+        </form>
+        <br>
         <f:forEach var="s" items="${pe}">
         <ul class="seachform1">
-            <li><label></label><input type="hidden" class="scinput1" value="${s.perId}"/></li>
+            <li><label>序号</label><input type="text" class="scinput1" value="${s.perId}"/></li>
             <li><label>姓名</label><input type="text" class="scinput1" value="${s.perName}" readonly/></li>
             <li><label>性别</label><input type="text" class="scinput1" value="${s.perSex}" readonly/></li>
 
+            <br><br><br>
             <li><label>血型</label><input type="text" class="scinput1" value="${s.perBlood}" readonly/></li>
-
             <li><label>年龄</label><input value="${s.perAge}" type="text" class="scinput1" readonly/></li>
             <li><label>出生年月</label><input value="${s.perBorn}" type="date" class="scinput1" readonly/></li>
-            <li><label>电话</label><input value="${s.perTele}" type="text" class="scinput1" readonly/></li>
 
+            <br><br><br>
+            <li><label>电话</label><input value="${s.perTele}" type="text" class="scinput1" readonly/></li>
             <li><label>住址</label><input value="${s.perAddr}" type="text" class="dfinput" readonly/></li>
-            <li><label>就诊卡号</label><input value="${s.cards.cardId}" type="text" class="scinput1" readonly/></li>
-            <li><label>就诊卡金额</label><input value="${s.cards.cardMoney}" type="text" class="scinput1" readonly/></li>
+
+            <br><br><br>
+            <li><label>卡片编号</label><input value="${s.cards.cardNo}" type="text" class="scinput1" readonly/></li>
+            <li><label>就诊卡余额</label><input value="${s.cards.cardMoney}" type="text" class="scinput1" readonly/></li>
             </f:forEach>
         </ul>
 
@@ -89,7 +97,9 @@
 
 </div>
 
-
+<%
+    session.removeAttribute("pe");
+%>
 </body>
 
 </html>
